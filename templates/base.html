@@ -9,11 +9,8 @@
     <title>Blog</title>
 </head>
 <body>
-    <div style="font-size: 25px;text-align: center;"> 
-        <a href="{% url 'index' %}">index</a>
-        <a href="{% url 'about' %}">about</a>
-        <a href="{% url 'entries' %}">entries</a>
-    </div>
+    {% include 'nav.html' %}
+    
     <div class="wrapper">
         {% block content %}
 
