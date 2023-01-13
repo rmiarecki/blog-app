@@ -1,14 +1,17 @@
 {% extends 'base.html' %}    
 
 {% block content %}
-    <div>
-        <h1>List of entries</h1>
+    <div class="entries">
+        <!-- <h1>List of entries</h1> -->
 
-            <div>
-                <h2><a href="#">{{ entries.title }}</a></h2>
-                <!-- <p>{{entry.body}}</p> -->
+            <div class="entry">
+                
+                <p class="return"><a href="{% url 'entries' %}"><i class="fa fa-arrow-left" aria-hidden="true"> back </i></a> </p>
+                <h2 class="title">{{ entries.title }}</h2>
                 <p>{{entries.body}}</p>
-                <p style="text-align: right">{{entries.date|date:"H:i, d.m.Y"}}</p>
+                <p class="date">{{entries.date|date:"H:i, d.m.Y"}}</p>
+                
+                
             </div>
 
 
