@@ -10,12 +10,12 @@ body {
 }
 
 .navbar {
-  padding: 1rem;
+  padding: 1rem 7rem;
   height: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #2F4858;
+  background-color: rgb(27, 27, 27);
   color: #FBF9FF;
 }
 .navbar a {
@@ -66,4 +66,28 @@ body {
 }
 .check a {
   text-decoration: none;
+}
+
+.about {
+  border-radius: 5px;
+  font-family: "Inter";
+  width: 920px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 80px auto;
+  min-height: 70vh;
+}
+.about .aboutme {
+  color: hsl(240deg, 38%, 20%);
+  font-size: 20px;
+  text-align: justify;
+  width: 450px;
+}
+.about .aboutme .author {
+  margin-top: 15px;
+  font-weight: 700;
+}
+.about .photo img {
+  width: 350px;
 }/*# sourceMappingURL=style.css.map */
