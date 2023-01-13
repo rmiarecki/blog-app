@@ -1,0 +1,26 @@
+{% extends 'base.html' %}    
+
+{% block content %}
+    <div>
+        <h1>List of entries</h1>
+        {% for entry in entries %}
+            <div>
+                <h2><a href="#">{{ entry.title }}</a></h2>
+                <p>{{entry.reduction}}</p>
+                <p style="text-align: right">{{entry.date|date:"H:i, d.m.Y"}}</p>
+                <a href="entry/{{ entry.id }}"><button>READ MORE</button></a>
+                
+            </div>
+        {% endfor %}
+        
+        <p>Page {{ entries.number }} of {{ entries.paginator.num_pages }}.</p>
+        {% if entries.has_previous %}
+        <a href="?page={{entries.previous_page_number}}">Previous</a>
+        {% endif %}
+        
+        {% if entries.has_next %}
+        <a href="?page={{entries.next_page_number}}">Next</a>
+        {% endif %}
+
+    </div>
+{% endblock %}
