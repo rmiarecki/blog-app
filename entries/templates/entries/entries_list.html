@@ -9,7 +9,7 @@
                 <h2 class="title">{{ entry.title }}</h2>
                 <p>{{entry.reduction}}</p>
                 <p class="date">{{entry.date|date:"H:i, d.m.Y"}}</p>
-                <a href="entry/{{ entry.id }}"><button class="btn btn-outline-secondary">READ MORE</button></a>
+                <a href="entry/{{ entry.id }}/{{ entry.slug}}"><button class="btn btn-outline-secondary">READ MORE</button></a>
                 
             </div>
         {% endfor %}
