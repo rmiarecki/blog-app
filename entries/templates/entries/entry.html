@@ -5,8 +5,8 @@
         <!-- <h1>List of entries</h1> -->
 
             <div class="entry">
-                
-                <p class="return"><a href="{% url 'entries' %}"><i class="fa fa-arrow-left" aria-hidden="true"> back </i></a> </p>
+                <button type="button" onclick="history.back()" class="btn btn-outline-secondary btn-sm">Go back</button>
+                <!-- <p class="return"><a href="{% url 'entries' %}"><i class="fa fa-arrow-left" aria-hidden="true"> back </i></a> </p> -->
                 <h2 class="title">{{ entries.title }}</h2>
                 <p>{{entries.body}}</p>
                 <p class="date">{{entries.date|date:"H:i, d.m.Y"}}</p>

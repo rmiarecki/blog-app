@@ -19,5 +19,5 @@ def entries_list(request):
     return render(request, 'entries/entries_list.html', {'entries': page})
 
 def entry(request, id, slug):
-    entries = Entry.objects.get(id=id)
+    entries = Entry.objects.get(id=id,)
     return render(request, 'entries/entry.html', {'entries': entries})
