@@ -1,0 +1,23 @@
+{% extends 'base.html' %}    
+
+{% block content %}
+    <div class="entries">
+        <!-- <h1>List of entries</h1> -->
+
+            <div class="entry">
+                <h1>New Entry</h1>
+                
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    Title: <input type="text" name="title" class="form-control">
+                    Slug: <input type="text" name="slug" class="form-control">
+                    Body: <textarea class="form-control" name="body" rows="8"></textarea>
+                    <button type="submit" class="btn btn-primary btn-block mb-4">Add</button>
+                </form>
+                
+                
+            </div>
+
+
+    </div>
+{% endblock %}

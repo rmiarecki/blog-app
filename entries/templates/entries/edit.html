@@ -1,0 +1,21 @@
+{% extends 'base.html' %}    
+
+{% block content %}
+    <div class="entries">
+            <div class="entry">
+                <h1>Edit</h1>
+                
+                <form action="/entries/update/{{entry.id}}" method="POST">
+                    {% csrf_token %}
+                    Title: <input type="text" name="title" class="form-control" value="{{entry.title}}">
+                    Slug: <input type="text" name="slug" class="form-control" value="{{entry.slug}}">
+                    Body: <textarea class="form-control" name="body" rows="8">{{entry.body}}</textarea>
+                    <button type="submit" class="btn btn-primary btn-block mb-4">Update</button>
+                </form>
+                
+                
+            </div>
+
+
+    </div>
+{% endblock %}

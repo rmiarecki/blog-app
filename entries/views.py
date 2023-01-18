@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Entry
-
+from .forms import EntriesForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def entries_list(request):
@@ -21,3 +21,36 @@ def entries_list(request):
 def entry(request, id, slug):
     entries = Entry.objects.get(id=id,)
     return render(request, 'entries/entry.html', {'entries': entries})
+
+
+def add_new(request):
+    
+    if request.method == "POST":  
+        form = EntriesForm(request.POST)  
+        if form.is_valid():  
+            try:  
+                form.save()  
+                return redirect('entries')  
+            except:  
+                pass  
+    else:  
+        form = EntriesForm()  
+    return render(request,'entries/new_entry.html',{'form': form})  
+
+def destroy(request, id):  
+    entry = Entry.objects.get(id=id)  
+    entry.delete()  
+    return redirect("entries")  
+
+def edit(request, id):  
+    entry = Entry.objects.get(id=id)  
+    return render(request,'entries/edit.html', {'entry':entry})  
+
+def update(request, id):  
+    entry = Entry.objects.get(id=id)  
+    form = EntriesForm(request.POST, instance = entry)  
+    if form.is_valid():  
+        form.save()  
+        return redirect("entries")  
+    return render(request, 'entries/edit.html', {'entry': entry})  
+

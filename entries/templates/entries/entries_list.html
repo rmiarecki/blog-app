@@ -11,11 +11,18 @@
                 <p class="date">{{entry.date|date:"H:i, d.m.Y"}}</p>
                 <a href="entry/{{ entry.id }}/{{ entry.slug}}"><button class="btn btn-outline-secondary">READ MORE</button></a>
                 
+                {% if user.is_superuser %}
+                <a class="btn btn-danger" role="button" href="destroy/{{ entry.id }}" >Delete</a>
+                <a class="btn btn-warning" role="button" href="edit/{{ entry.id }}" >Edit</a>
+                {% endif %}
+
+                
             </div>
         {% endfor %}
         
         <div class="pages">   
             <p class="num-of-pages">Page {{ entries.number }} of {{ entries.paginator.num_pages }}.
+            
             <ul class="pagination justify-content-center">   
                 
                 {% if entries.has_previous %}
