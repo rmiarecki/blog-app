@@ -17,6 +17,18 @@
                 {% endif %}
             </div>
 
+            <div class="comments">
+                <h2>Comments</h2>
+                {% if not entries.comments.all %}
+                    No comments yet
+                {% else  %}
+                    {% for comment in entries.comments.all %}
+                        <p><b>{{ comment.name }} - {{comment.date_added}}</b></p>
+                        <p>{{ comment.body }}</p>
+                        <hr>
+                    {% endfor %}
+                {% endif %}
+            </div>
 
     </div>
 {% endblock %}
