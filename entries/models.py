@@ -1,5 +1,6 @@
 from django.db import models
-
+from django.contrib.auth import get_user_model
+User=get_user_model()
 
 class Entry(models.Model):
     title = models.CharField(max_length=50)  
@@ -18,9 +19,9 @@ class Entry(models.Model):
     
 class Comment(models.Model):
     entry = models.ForeignKey(Entry, related_name='comments', on_delete=models.CASCADE)
-    name = models.CharField(max_length=120)
-    body = models.TextField()
+    name = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return 'Comment by {} - on {}'.format(self.name, self.entry) 

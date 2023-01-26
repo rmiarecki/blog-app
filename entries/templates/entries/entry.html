@@ -24,10 +24,22 @@
                 {% else  %}
                     {% for comment in entries.comments.all %}
                         <p><b>{{ comment.name }} - {{comment.date_added}}</b></p>
-                        <p>{{ comment.body }}</p>
+                        <p>{{ comment.content }}</p>
                         <hr>
                     {% endfor %}
                 {% endif %}
+                
+                {% if user.is_authenticated %}
+                        <p>Add comment</p>
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            {{ comment_form.as_p }}
+                            <button type="submit" class="btn btn-primary btn-block mb-4">Add</button>
+                        </form>
+                {% endif %}
+                
+
+
             </div>
 
     </div>

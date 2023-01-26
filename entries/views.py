@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Entry
-from .forms import EntriesForm
+from .models import Entry, Comment
+from .forms import EntriesForm, CommentForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def entries_list(request):
@@ -19,8 +19,29 @@ def entries_list(request):
     return render(request, 'entries/entries_list.html', {'entries': page})
 
 def entry(request, id, slug):
-    entries = Entry.objects.get(id=id,)
-    return render(request, 'entries/entry.html', {'entries': entries})
+    entries = Entry.objects.get(id=id)
+    
+    if request.method == "POST":  
+        comment_form = CommentForm(request.POST)  
+        if comment_form.is_valid():  
+            try:  
+                comment_form.save(commit=False)  
+                # return redirect('entries')  
+                # comment_form.name = 'karol'
+                # comment_form = CommentForm(initial={'name': 'wiesiek'})
+                # comment_form.cleaned_data['Name'] = 'karol'
+
+                comment_form.instance.name = request.user
+                comment_form.instance.entry = entries
+                comment_form.save()  
+                comment_form = CommentForm()  
+            except:  
+                pass  
+    else:  
+        comment_form = CommentForm()  
+
+    return render(request, 'entries/entry.html', {'entries': entries, 
+                                                  'comment_form': comment_form})
 
 
 def add_new(request):
@@ -53,4 +74,3 @@ def update(request, id):
         form.save()  
         return redirect("entries")  
     return render(request, 'entries/edit.html', {'entry': entry})  
-
